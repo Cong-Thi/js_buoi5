@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Bài Tập Buổi 5</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container py-5 text-center ">
+        <h1>Bài Tập JavaScript Buổi 5</h1>
+        <div class="row py-5 home">
+            <div class="col-2 pl-3 nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                aria-orientation="vertical">
+                <a class="nav-link active" data-toggle="pill" href="#bai1" role="tab" aria-selected="true">Bài 1</a>
+                <a class="nav-link" data-toggle="pill" href="#bai2" role="tab" aria-selected="false">Bài 2</a>
+                <a class="nav-link" data-toggle="pill" href="#bai3" role="tab" aria-selected="false">Bài 3</a>
+                <a class="nav-link" data-toggle="pill" href="#bai4" role="tab" aria-selected="false">Bài 4</a>
+            </div>
+            <div class="col-10 tab-content" id="v-pills-tabContent">
+                <!-- bài 1 -->
+                <div class="tab-pane fade show active" id="bai1" role="tabpanel">
+                    <h2>Quản Lý Tuyển Sinh</h2>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <input type="number" name="" id="diemChuan" class="form-control mb-2" placeholder="Nhập điểm chuẩn"
+                                    aria-describedby="helpId">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <select class="form-control" id="khuVuc">
+                                    <option value="1">Chọn Khu Vực</option>
+                                    <option value="2">A</option>
+                                    <option value="3">B</option>
+                                    <option value="4">C</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <select class="form-control" id="doiTuong">
+                                    <option value="1">Chọn Đối Tượng</option>
+                                    <option value="2">1</option>
+                                    <option value="3">2</option>
+                                    <option value="4">3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <input type="number" name="" id="diem1" class="form-control mb-2" placeholder="Nhập điểm môn thứ 1"
+                                    aria-describedby="helpId">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <input type="number" name="" id="diem2" class="form-control mb-2" placeholder="Nhập điểm môn thứ 2"
+                                    aria-describedby="helpId">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <input type="number" name="" id="diem3" class="form-control mb-2" placeholder="Nhập điểm môn thứ 3"
+                                    aria-describedby="helpId">
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="ketQua()" class="btn btn-primary">Kết Quả</button>
+                    <div class="alert" id="alert1"></div>
+                </div>
+                <!-- bài 2 -->
+                <div class="tab-pane fade" id="bai2" role="tabpanel">
+                    <h2>Tính tiền điện</h2>
+                    <div class="form-group">
+                        <input type="text" name="" id="name" class="form-control mb-2" placeholder="Nhập họ và tên"
+                            aria-describedby="helpId">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="" id="numberKw" class="form-control mb-2" placeholder="Nhập số kw"
+                            aria-describedby="helpId">
+                    </div>
+                    <button onclick="tinhTienDien()" class="btn btn-primary">Tính Tiền Điện</button>
+                    <div class="alert" id="alert2"></div>
+                </div>
+                <!-- bài 3 -->
+                <div class="tab-pane fade" id="bai3" role="tabpanel">
+                    <h2>Tính thuế thu nhập cá nhân</h2>
+                    <div class="form-group">
+                        <input type="text" name="" id="name1" class="form-control mb-2" placeholder="Nhập họ tên"
+                            aria-describedby="helpId">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="" id="tongThuNhap" class="form-control mb-2" placeholder="Tổng thu nhập năm"
+                            aria-describedby="helpId">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="" id="nguoiPhuThuoc" class="form-control mb-2" placeholder="Số người phụ thuộc"
+                            aria-describedby="helpId">
+                    </div>
+                    <button onclick="tinhTienThue()" class="btn btn-primary">Tính Tiền Thuế</button>
+                    <div class="alert" id="alert3"></div>
+                </div>
+                <!-- bài 4 -->
+                <div class="tab-pane fade" id="bai4" role="tabpanel">
+                    <h2>Tính tiền cáp</h2>
+                    <div class="form-group">
+                        <select class="form-control" id="khachHang" onchange="loaiKhachHang(3)">
+                            <option value="1">Chọn Loại Khách Hàng</option>
+                            <option value="2">Nhà Dân</option>
+                            <option value="3">Doanh Nghiệp</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="" id="maKH" class="form-control mb-2"
+                            placeholder="Nhập mã khách hàng" aria-describedby="helpId">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="" id="kenh" class="form-control mb-2"
+                            placeholder="Số kênh cao cấp" aria-describedby="helpId">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="" id="ketNoi" class="form-control mb-2"
+                            placeholder="Số kết nối" aria-describedby="helpId" style="display: none;">
+                    </div>
+                    <button onclick="tinhTienCap()" class="btn btn-primary">Tính Tiền Cáp</button>
+                    <div class="alert" id="alert4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
