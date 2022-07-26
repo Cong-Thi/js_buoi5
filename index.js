@@ -18,9 +18,10 @@ function ketQua() {
   var diem3 = +document.getElementById("diem3").value;
   var khuVuc = +document.getElementById("khuVuc").value;
   var doiTuong = +document.getElementById("doiTuong").value;
-  if (!diem1 || !diem2 || !diem3) {
+  //Kiểm tra thông tin người dùng nhập
+  if (diemChuan <= 0 || diem1 <= 0 || diem2 <= 0 || diem3 <= 0) {
     document.getElementById("alert1").innerHTML =
-      "Bạn đã rớt. Do có điểm nhỏ hơn hoặc bằng 0";
+      "Bạn đã rớt, điểm thi nhỏ hơn hoặc bằng 0";
     return;
   }
   switch (khuVuc) {
@@ -76,7 +77,7 @@ function ketQua() {
  * - Tạo biến name, numberKw cho người dùng nhập
  * Xử lý:
  * - DOM giá trị người dùng nhập về
- * - Kiểm tra name, numberKw giá trị rỗng
+ * - Kiểm tra name, numberKw giá trị rỗng, <0
  * - Tạo biến price
  * - Viết function tính tiền điện
  * Đầu ra:
@@ -119,7 +120,6 @@ function tinhTienDien() {
     "Họ tên: " + name + "; Tiền điện: " + currentFormat.format(price) + " VNĐ";
 }
 
-
 /** Bài số 3
  * Mô hình 3 khối: Tính thuế thu nhập cá nhân
  * Đầu vào:
@@ -134,38 +134,51 @@ function tinhTienDien() {
  * - Thông báo họ tên, và số tiền thuế thu nhập
  */
 
-function tinhTienThue(){
+function tinhTienThue() {
   var name1 = document.getElementById("name1").value;
   var tongThuNhap = +document.getElementById("tongThuNhap").value;
   var nguoiPhuThuoc = +document.getElementById("nguoiPhuThuoc").value;
-  var thuNhapChiuThue = tongThuNhap - 4000000 - (nguoiPhuThuoc* 1600000);
+  var thuNhapChiuThue = tongThuNhap - 4000000 - nguoiPhuThuoc * 1600000;
   //Kiểm tra thông tin khi khách hàng nhập vào
-  if (thuNhapChiuThue <=0 || !tongThuNhap){
-    document.getElementById("alert3").innerHTML =
-      "Tổng thu nhập không hợp lệ";
+  if (thuNhapChiuThue <= 0 || !tongThuNhap) {
+    document.getElementById("alert3").innerHTML = "Tổng thu nhập không hợp lệ";
     return;
   }
   var currentFormat = new Intl.NumberFormat("vn-VN");
-  var thue = calcThue (thuNhapChiuThue, 5, 10, 15, 20, 25, 30, 35);
-  function calcThue(thuNhapChiuThue, thue1, thue2, thue3, thue4, thue5,thue6,thue7){
-    if(thuNhapChiuThue <= 60000000 ){
-      thue = thuNhapChiuThue * (thue1/100);
-    }else if (thuNhapChiuThue <= 120000000){
-      thue = thuNhapChiuThue * (thue2/100);
-    }else if (thuNhapChiuThue <= 210000000){
-      thue = thuNhapChiuThue * (thue3/100);
-    }else if (thuNhapChiuThue <= 384000000){
-      thue = thuNhapChiuThue * (thue4/100);
-    }else if (thuNhapChiuThue <= 624000000){
-      thue = thuNhapChiuThue * (thue5/100);
-    }else if (thuNhapChiuThue <= 960000000){
-      thue = thuNhapChiuThue * (thue6/100);
-    }else{
-      thue = thuNhapChiuThue * (thue7/100);
+  var thue = calcThue(thuNhapChiuThue, 5, 10, 15, 20, 25, 30, 35);
+  function calcThue(
+    thuNhapChiuThue,
+    thue1,
+    thue2,
+    thue3,
+    thue4,
+    thue5,
+    thue6,
+    thue7
+  ) {
+    if (thuNhapChiuThue <= 60000000) {
+      thue = thuNhapChiuThue * (thue1 / 100);
+    } else if (thuNhapChiuThue <= 120000000) {
+      thue = thuNhapChiuThue * (thue2 / 100);
+    } else if (thuNhapChiuThue <= 210000000) {
+      thue = thuNhapChiuThue * (thue3 / 100);
+    } else if (thuNhapChiuThue <= 384000000) {
+      thue = thuNhapChiuThue * (thue4 / 100);
+    } else if (thuNhapChiuThue <= 624000000) {
+      thue = thuNhapChiuThue * (thue5 / 100);
+    } else if (thuNhapChiuThue <= 960000000) {
+      thue = thuNhapChiuThue * (thue6 / 100);
+    } else {
+      thue = thuNhapChiuThue * (thue7 / 100);
     }
     return thue;
   }
-  document.getElementById("alert3").innerHTML = "Họ tên: " + name1 + "; Tiền thuế thu nhập cá nhân: " + currentFormat.format(thue) +" VNĐ";
+  document.getElementById("alert3").innerHTML =
+    "Họ tên: " +
+    name1 +
+    "; Tiền thuế thu nhập cá nhân: " +
+    currentFormat.format(thue) +
+    " VNĐ";
 }
 
 /** Bài số 3
@@ -182,41 +195,43 @@ function tinhTienThue(){
  * - Thông báo họ tên, và số tiền thuế thu nhập
  */
 
-function loaiKhachHang(){
+function loaiKhachHang() {
   var khachHang = document.getElementById("khachHang").value;
   //document.getElementById("ketNoi").style.display = "3" == khachHang ? "block" : "none";
-  if(khachHang == 3){
-    document.getElementById("ketNoi").style.display= "block";
-  }else{
-    document.getElementById("ketNoi").style.display= "none";
+  if (khachHang == 3) {
+    document.getElementById("ketNoi").style.display = "block";
+  } else {
+    document.getElementById("ketNoi").style.display = "none";
   }
 }
-function tinhTienCap(){
+function tinhTienCap() {
   var khachHang = document.getElementById("khachHang").value;
   var maKH = document.getElementById("maKH").value;
   var kenh = document.getElementById("kenh").value;
   var ketNoi = document.getElementById("ketNoi").value;
   //Kiểm tra thông tin
-  if(khachHang == 1 || !maKH || !kenh || !ketNoi){
-    document.getElementById("alert4").innerHTML="Hãy chọn loại khách hàng và điền thông tin";
+  if (khachHang == 1 || !maKH || !kenh || !ketNoi) {
+    document.getElementById("alert4").innerHTML =
+      "Hãy chọn loại khách hàng và điền thông tin";
     return;
   }
   //Tính phí
   var price = 0;
-  if (khachHang == 2){
-    price = calcPrice (khachHang, kenh, ketNoi, 4.5, 20.5, 7.5);
-  } else if(khachHang == 3){
-    price = calcPrice (khachHang, kenh, ketNoi, 15, 75, 50);
-  } 
-function calcPrice (khachHang, kenh, ketNoi, phiXuly, phiDichVu, phiThueKenh){
-  if (khachHang == 2){
-    price = phiXuly + phiDichVu + phiThueKenh*kenh;
-  }else if(khachHang == 3 && ketNoi <=10){
-    price = phiXuly + phiDichVu + phiThueKenh*kenh;   
-  }else if (khachHang == 3 && ketNoi>10 ){
-    price = phiXuly + phiDichVu + phiThueKenh*kenh + (ketNoi -10)*5;
+  if (khachHang == 2) {
+    price = calcPrice(khachHang, kenh, ketNoi, 4.5, 20.5, 7.5);
+  } else if (khachHang == 3) {
+    price = calcPrice(khachHang, kenh, ketNoi, 15, 75, 50);
   }
-  return price;
-}
-document.getElementById("alert4").innerHTML = "Mã khách hàng: " + maKH + "! Tiền cáp: $" + price;
+  function calcPrice(khachHang, kenh, ketNoi, phiXuly, phiDichVu, phiThueKenh) {
+    if (khachHang == 2) {
+      price = phiXuly + phiDichVu + phiThueKenh * kenh;
+    } else if (khachHang == 3 && ketNoi <= 10) {
+      price = phiXuly + phiDichVu + phiThueKenh * kenh;
+    } else if (khachHang == 3 && ketNoi > 10) {
+      price = phiXuly + phiDichVu + phiThueKenh * kenh + (ketNoi - 10) * 5;
+    }
+    return price;
+  }
+  document.getElementById("alert4").innerHTML =
+    "Mã khách hàng: " + maKH + "! Tiền cáp: $" + price;
 }
